@@ -1,0 +1,19 @@
+.home{
+  width:100%;
+  display:flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  height:500px;
+  background-image: url("../../assets/hero-banner.jpg");
+}
+.home input, .home button{
+  margin-top:20%;
+ 
+}
+.home img{
+  width:70px;
+  height:40px;
+  margin-top:20px;
+  /* margin-right:auto; */
+  /* margin-left:30px; */
+}
