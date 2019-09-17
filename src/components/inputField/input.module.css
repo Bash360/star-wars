@@ -2,10 +2,15 @@
   -webkit-appearance: none;
   outline: none;
   height: 30px;
-  width: 85%;
+  width:85%;
 }
 
-.input:focus {
-  border: 2px solid #132567;
-  border-left: 0;
+@media only screen and (min-width:450px) {
+  .input {
+    -webkit-appearance: none;
+    outline: none;
+    height: 50px;
+    width: 85%;
+
+  }
 }

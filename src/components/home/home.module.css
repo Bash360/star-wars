@@ -10,12 +10,12 @@
 }
 
 .home__search {
-  width:300px;
+  width: 90%;
   margin: auto;
   margin-top: 10px;
-  padding: 0 5px;
-  
- 
+  background: #fff;
+  border:3px solid #fff;
+  border-radius: 3px;
 }
 
 .home__logo {
@@ -30,7 +30,6 @@
   width: 70%;
   margin: auto;
   margin-top: 40px;
-
 }
 
 .home__dir {
@@ -46,11 +45,29 @@
   margin-left: 40px;
   vertical-align: middle;
 }
-.home__text{
-  width:70%;
-  margin:auto;
-text-align: center;
-margin-top:5px;
-margin-bottom: 5px;
-word-spacing: 3px;
+
+.home__text {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  word-spacing: 3px;
+}
+
+@media only screen and (min-width:450px) {
+  .home__search {
+    width: 450px;
+  }
+  .home__text {
+    width: 30%;
+  }
+  .home__top {
+    width: 20%;
+    margin-bottom: 10px;
+  }
+  .home__logo {
+    width: 70px;
+    height: 60px;
+  }
 }
