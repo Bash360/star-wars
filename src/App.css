@@ -1,9 +1,12 @@
-
+*{
+  margin:0;
+  box-sizing: border-box;
+}
 .App{
 padding:10px;
 width:100%;
 display: flex;
 flex-direction: column;
-flex-wrap: nowrap;
 align-items: center;
+color:#fff;
 }

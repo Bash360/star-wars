@@ -1,10 +1,11 @@
 .input {
   -webkit-appearance: none;
-  height: 50px;
   outline: none;
-  outline-style: none;
-  width:40%;
-  border:none;
-  margin-left:0;
-  
+  height: 30px;
+  width: 85%;
+}
+
+.input:focus {
+  border: 2px solid #132567;
+  border-left: 0;
 }
