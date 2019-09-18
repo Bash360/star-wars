@@ -5,7 +5,7 @@
   width:85%;
 }
 
-@media only screen and (min-width:450px) {
+@media only screen and (min-width:480px) {
   .input {
     -webkit-appearance: none;
     outline: none;

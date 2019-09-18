@@ -10,12 +10,12 @@
 }
 
 .home__search {
-  width: 90%;
+  width: calc(30px+85%+12px);
   margin: auto;
   margin-top: 10px;
   background: #fff;
   border:3px solid #fff;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 .home__logo {
@@ -55,7 +55,7 @@
   word-spacing: 3px;
 }
 
-@media only screen and (min-width:450px) {
+@media only screen and (min-width:480px) {
   .home__search {
     width: 450px;
   }
