@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './home.module.css';
-import Button from '../button';
+import SearchButton from '../search-button';
 import InPutField from '../inputField';
 import logo from "../../assets/logo.png";
 function Home() {
@@ -18,7 +18,7 @@ function Home() {
            </div>
         <p className={style.home__text}>Find your favourite Characters, Films, Species, Starships and Planets</p>  
  <div className={style.home__search}>
-        <Button label="search" />
+        <SearchButton label="search" />
         <InPutField type="search" placeholder="Enter a search term" />
    </div>
   
