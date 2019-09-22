@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import Home from '../src/components/home/index';
+import Head from './components/head/index';
 import { Switch, Route } from 'react-router-dom';
-import Starships from '../src/components/star-ships';
+import Home from './components/home';
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <Head />
       <Switch>
-        <Route path="/" strict exact component={Starships} />
+        <Route path="/" strict exact component={Home} />
       </Switch>
     </div>
   );
