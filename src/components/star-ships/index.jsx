@@ -12,7 +12,6 @@ function Starships() {
   const [images, setImages] = useState([]);
   let cards;
   const fetchStarship = async () => {
-    // setLoading(true);
     const fetchedStarships = await axios.get(
       'https://swapi.co/api/starships?page=1',
     );
@@ -27,6 +26,7 @@ function Starships() {
     ]);
     setImages(images);
     setLoading(false);
+    console.log(fetchedStarships.data.results);
   };
   useEffect(() => {
     fetchStarship();
