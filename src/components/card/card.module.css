@@ -1,8 +1,8 @@
 .card {
-  flex-basis: 350px;
-  height:350px;
+  height: 350px;
+  width: 90%;
   margin-top: 20px;
-  border: 5px solid #9C9EA7;
+  border: 5px solid #9c9ea7;
 }
 
 .card img {
@@ -11,15 +11,18 @@
 }
 
 .card button {
-  margin-top:30px;
+  margin-top: 20px;
   margin-left: 200px;
-  width:100px;
-  height:40px;
-
+  width: 100px;
+  height: 40px;
 }
 
 .card p {
   padding: 5px;
+  width: 350px;
+  height: 50px;
+
+  text-overflow: ellipsis;
 }
 
 .card h5 {
