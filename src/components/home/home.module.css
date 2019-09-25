@@ -16,27 +16,38 @@ ul {
   flex-wrap: wrap;
 }
 
-.starships__header + hr {
+.starships__header + hr,
+.planets__header + hr {
   width: 100px;
   height: 5px;
   background: #000;
   margin: auto;
 }
 
-.starships__header {
+.starships__header,
+.planets__header {
   text-align: center;
   margin-bottom: 5px;
   margin-top: 5px;
   color: #000;
 }
 
-@media only screen and (min-width: 480px) {
-  .starships {
-    width: 85%;
-  }
+.home__link button {
+  width: 200px;
+  height: 40px;
+}
+
+.planets__header {
+  margin-top: 20px;
 }
 .spinner i {
   margin-top: 20px;
   color: #000;
   font-size: 250%;
+}
+
+@media only screen and (min-width: 480px) {
+  .starships {
+    width: 85%;
+  }
 }
