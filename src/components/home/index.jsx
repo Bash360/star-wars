@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import StarshipCard from '../starship-card';
 import style from './home.module.css';
 import axios from 'axios';
@@ -6,15 +6,16 @@ import GenericButton from '../generic-button';
 import { NavLink } from 'react-router-dom';
 import PlanetCard from '../planet-card';
 import PeopleCard from '../people-card';
+import { imageContext } from '../../imageContext';
 
 function Home() {
   const [starships, setStarships] = useState([]);
   const [planets, setPlanets] = useState([]);
   const [people, setPeople] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [starshipImages, setStarshipImages] = useState([]);
-  const [planetImages, setPlanetImages] = useState([]);
-  const [peopleImages, setPeopleImages] = useState([]);
+  const { starshipImages, planetImages, peopleImages } = useContext(
+    imageContext,
+  );
   let starshipCards = [];
   let planetCards = [];
   let peopleCards = [];
@@ -28,30 +29,6 @@ function Home() {
     setStarships(resources[0].data.results);
     setPlanets(resources[1].data.results);
     setPeople(resources[2].data.results);
-    console.log(resources[2].data.results);
-    let starshipImages = await Promise.all([
-      import('../../assets/starship-1.jpg'),
-      import('../../assets/starship-2.jpg'),
-      import('../../assets/starship-3.jpg'),
-      import('../../assets/starship-4.jpg'),
-      import('../../assets/starship-5.jpg'),
-      import('../../assets/starship-6.jpg'),
-    ]);
-    let planetImages = await Promise.all([
-      import('../../assets/planet-1.jpg'),
-      import('../../assets/planet-2.jpg'),
-      import('../../assets/planet-3.jpg'),
-    ]);
-    let peopleImages = await Promise.all([
-      import('../../assets/character-1.jpg'),
-      import('../../assets/character-2.jpg'),
-      import('../../assets/character-3.jpg'),
-      import('../../assets/character-4.jpg'),
-    ]);
-    setStarshipImages(starshipImages);
-    setPlanetImages(planetImages);
-    setPeopleImages(peopleImages);
-
     setLoading(false);
   };
   useEffect(() => {
