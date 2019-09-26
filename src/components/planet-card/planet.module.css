@@ -10,7 +10,7 @@
   height: 400px;
 }
 
-.planet p {
+.planet .planet__name {
   z-index: 100;
   position: absolute;
   color: #fff;
