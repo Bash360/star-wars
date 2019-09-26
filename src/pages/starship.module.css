@@ -16,6 +16,11 @@ ul {
   flex-wrap: wrap;
 }
 
+.paginated {
+  display: flex;
+  justify-center: center;
+}
+
 .pagination__button {
   margin-top: 30px;
   margin-bottom: 60px;
@@ -31,9 +36,18 @@ ul {
   cursor: pointer;
 }
 
+.starship__count {
+  color: #000;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  margin-right: 10px;
+  align-self: center;
+}
+
 .pagination__button i:hover {
   opacity: 0.5;
 }
+
 .pagination__button .left {
   margin-right: 5px;
   border-right: 3px solid #9c9ea7;

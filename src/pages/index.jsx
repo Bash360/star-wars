@@ -9,22 +9,26 @@ function Starships() {
   const [endpoint, setEndPoint] = useState(null);
   let [nextPage, setNextPage] = useState(null);
   let [prevPage, setPrevPage] = useState(null);
+  let [isClicked, setIsCliked] = useState(false);
+  let [count, setCount] = useState(1);
+  let [max, setMax] = useState(null);
   const { starshipImages } = useContext(imageContext).imageResource;
   let starshipCards = [];
   const getStarShips = async (
     _endpoint = 'https://swapi.co/api/starships?page=1',
   ) => {
     const starshipResource = await axios.get(_endpoint);
-    const { results, next, previous } = starshipResource.data;
+    const { results, next, previous, count } = starshipResource.data;
     setStarShip(results);
     setNextPage(next);
     setPrevPage(previous);
     setLoading(false);
+    setIsCliked(false);
+    setMax(count);
   };
   const handleClick = event => {
     let target = event.target.getAttribute('name');
-    console.log(target);
-
+    setIsCliked(true);
     if (target === 'next') {
       setEndPoint(nextPage);
     }
@@ -56,6 +60,7 @@ function Starships() {
       );
     });
   }
+
   return !loading ? (
     <React.Fragment>
       <h3 className={style.starships__header}>Popular Starships</h3>
@@ -63,18 +68,29 @@ function Starships() {
       <div className={style.starships}>
         <ul>{starshipCards}</ul>
       </div>
-      <div className={style.pagination__button}>
-        <div>
-          <i
-            name="previous"
-            onClick={handleClick}
-            className={`fa fa-angle-left ${style.left}`}
-          ></i>
-          <i
-            name="next"
-            onClick={handleClick}
-            className={`fa fa-angle-right ${style.right}`}
-          ></i>
+
+      {isClicked && (
+        <div className={`${style.spinner} ${style.spinner__pagination}`}>
+          <i className="fa fa-spinner fa-spin"></i>
+        </div>
+      )}
+      <div className={style.paginated}>
+        <div
+          className={style.starship__count}
+        >{`${count}-${starships.length} of ${max}`}</div>
+        <div className={style.pagination__button}>
+          <div>
+            <i
+              name="previous"
+              onClick={handleClick}
+              className={`fa fa-angle-left ${style.left}`}
+            ></i>
+            <i
+              name="next"
+              onClick={handleClick}
+              className={`fa fa-angle-right ${style.right}`}
+            ></i>
+          </div>
         </div>
       </div>
     </React.Fragment>
