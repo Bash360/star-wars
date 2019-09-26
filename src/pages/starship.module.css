@@ -1,6 +1,7 @@
 .starships {
   color: #000;
 }
+
 li {
   list-style: none;
   display: inline;
@@ -13,6 +14,39 @@ ul {
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
+}
+
+.pagination__button {
+  margin-top: 30px;
+  margin-bottom: 60px;
+  color: #000;
+  border: 3px solid #9c9ea7;
+  width: 200px;
+  height: 30%;
+  border-radius: 5px;
+}
+
+.pagination__button i {
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.pagination__button i:hover {
+  opacity: 0.5;
+}
+.pagination__button .left {
+  margin-right: 5px;
+  border-right: 3px solid #9c9ea7;
+  padding-right: 10px;
+}
+
+.pagination__button .right {
+  margin-left: 5px;
+}
+
+.pagination__button div {
+  display: flex;
+  justify-content: center;
 }
 
 .starships__header + hr {

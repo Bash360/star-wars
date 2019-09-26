@@ -6,18 +6,39 @@ import style from './starship.module.css';
 function Starships() {
   const [starships, setStarShip] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [endpoint, setEndPoint] = useState(null);
+  let [nextPage, setNextPage] = useState(null);
+  let [prevPage, setPrevPage] = useState(null);
   const { starshipImages } = useContext(imageContext).imageResource;
   let starshipCards = [];
-  const getStarShips = async () => {
-    const starshipResource = await axios.get(
-      'https://swapi.co/api/starships?page=1',
-    );
-    setStarShip(starshipResource.data.results);
+  const getStarShips = async (
+    _endpoint = 'https://swapi.co/api/starships?page=1',
+  ) => {
+    const starshipResource = await axios.get(_endpoint);
+    const { results, next, previous } = starshipResource.data;
+    setStarShip(results);
+    setNextPage(next);
+    setPrevPage(previous);
     setLoading(false);
   };
+  const handleClick = event => {
+    let target = event.target.getAttribute('name');
+    console.log(target);
+
+    if (target === 'next') {
+      setEndPoint(nextPage);
+    }
+    if (target === 'previous') {
+      setEndPoint(prevPage);
+    }
+  };
   useEffect(() => {
-    getStarShips();
-  }, []);
+    if (endpoint) {
+      getStarShips(endpoint);
+    } else {
+      getStarShips();
+    }
+  }, [endpoint]);
   if (!loading) {
     starshipCards = starships.map(starship => {
       let { url, model, cargo_capacity, name } = starship;
@@ -41,6 +62,20 @@ function Starships() {
       <hr />
       <div className={style.starships}>
         <ul>{starshipCards}</ul>
+      </div>
+      <div className={style.pagination__button}>
+        <div>
+          <i
+            name="previous"
+            onClick={handleClick}
+            className={`fa fa-angle-left ${style.left}`}
+          ></i>
+          <i
+            name="next"
+            onClick={handleClick}
+            className={`fa fa-angle-right ${style.right}`}
+          ></i>
+        </div>
       </div>
     </React.Fragment>
   ) : (
