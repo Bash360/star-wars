@@ -15,7 +15,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const { starshipImages, planetImages, peopleImages } = useContext(
     imageContext,
-  );
+  ).imageResource;
   let starshipCards = [];
   let planetCards = [];
   let peopleCards = [];
@@ -84,7 +84,7 @@ function Home() {
       <div className={style.starships}>
         <ul>{starshipCards}</ul>
       </div>
-      <NavLink className={style.home__link} to="/">
+      <NavLink className={style.home__link} to="/starships">
         <GenericButton text="View More" />
       </NavLink>
       <h3 className={style.planets__header}>Popular Planets</h3>

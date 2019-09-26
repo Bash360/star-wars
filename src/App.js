@@ -4,9 +4,11 @@ import Head from './components/head/index';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/home';
 import { imageContext } from './imageContext';
+import StarshipPage from './pages';
 
 function App() {
   const [imageResource, setImageResource] = useState(null);
+  const [loading, setLoading] = useState(true);
   const getImages = async () => {
     let starshipImages = await Promise.all([
       import('././assets/starship-1.jpg'),
@@ -28,19 +30,23 @@ function App() {
       import('././assets/character-4.jpg'),
     ]);
     setImageResource({ starshipImages, planetImages, peopleImages });
+    setLoading(false);
   };
   useEffect(() => {
     getImages();
   }, []);
-  return (
+  return !loading ? (
     <div className="App">
       <Head />
       <Switch>
         <imageContext.Provider value={{ imageResource }}>
           <Route path="/" strict exact component={Home} />
+          <Route path="/starships" strict exact component={StarshipPage} />
         </imageContext.Provider>
       </Switch>
     </div>
+  ) : (
+    ''
   );
 }
 
