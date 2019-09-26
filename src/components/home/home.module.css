@@ -1,4 +1,5 @@
-.starships {
+.starships,
+.planets {
   color: #000;
 }
 
@@ -40,6 +41,7 @@ ul {
 .planets__header {
   margin-top: 20px;
 }
+
 .spinner i {
   margin-top: 20px;
   color: #000;
@@ -49,5 +51,9 @@ ul {
 @media only screen and (min-width: 480px) {
   .starships {
     width: 85%;
+  }
+  .planets {
+    width: 75%;
+    margin-bottom: 20px;
   }
 }
