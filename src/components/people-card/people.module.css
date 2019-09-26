@@ -1,7 +1,9 @@
 .people {
-  height: 400px;
+  height: 250px;
   width: 90%;
   margin-top: 20px;
+  display: flex;
+  color: #000;
 }
 
 .people img {
@@ -10,20 +12,49 @@
   height: 100%;
 }
 
-/* .people p {
-  padding: 5px;
-  width: 350px;
-  height: 50px;
-  text-overflow: ellipsis;
-} */
-
-/* .people h5 {
-  padding-left: 5px;
-} */
-
-.people > div {
+.people__details {
   width: 40%;
   height: 100%;
-  background: #9c9ea7;
+  background: #e3e4eb;
   display: inline-block;
+}
+
+.people__details > p {
+  margin-left: 10px;
+}
+
+.people__details h5 {
+  width: 100%;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.people__about {
+  width: 90%;
+  height: 50%;
+  padding: 5px;
+  word-spacing: 3px;
+  word-wrap: break;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+a:link,
+a:visited {
+  padding: 14px 25px;
+  color: #000;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bold;
+}
+a:hover {
+  opacity: 0.5;
+}
+
+@media only screen and (min-width: 480px) {
+  .people {
+    height: 400px;
+  }
 }
