@@ -1,0 +1,29 @@
+.people {
+  height: 400px;
+  width: 90%;
+  margin-top: 20px;
+}
+
+.people img {
+  display: inline-block;
+  width: 60%;
+  height: 100%;
+}
+
+/* .people p {
+  padding: 5px;
+  width: 350px;
+  height: 50px;
+  text-overflow: ellipsis;
+} */
+
+/* .people h5 {
+  padding-left: 5px;
+} */
+
+.people > div {
+  width: 40%;
+  height: 100%;
+  background: #9c9ea7;
+  display: inline-block;
+}

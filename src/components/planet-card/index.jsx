@@ -1,10 +1,10 @@
 import React from 'react';
-import style from './card.module.css';
+import style from './planet.module.css';
 function PlanetCard({ src, alternate, name }) {
   return (
     <div className={style.planet}>
       <img src={src} alt={alternate}></img>
-      <p>{name}</p>
+      <p className={style.planet__name}>{name}</p>
     </div>
   );
 }
