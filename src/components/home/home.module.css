@@ -17,8 +17,23 @@ ul {
   flex-wrap: wrap;
 }
 
+.people ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.people li {
+  list-style: none;
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-basis: 600px;
+}
+
 .starships__header + hr,
-.planets__header + hr {
+.planets__header + hr,
+.people__header + hr {
   width: 100px;
   height: 5px;
   background: #000;
@@ -26,7 +41,8 @@ ul {
 }
 
 .starships__header,
-.planets__header {
+.planets__header,
+.people__header {
   text-align: center;
   margin-bottom: 5px;
   margin-top: 5px;
@@ -34,7 +50,8 @@ ul {
 }
 
 .home__link button {
-  width: 200px;
+  margin-top: 10px;
+  width: 300px;
   height: 40px;
 }
 
@@ -55,5 +72,9 @@ ul {
   .planets {
     width: 75%;
     margin-bottom: 20px;
+  }
+  .people {
+    width: 92%;
+    margin: auto;
   }
 }
