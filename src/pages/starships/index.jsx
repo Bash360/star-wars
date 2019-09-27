@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
-import StarshipCard from '../components/starship-card';
+import StarshipCard from '../../components/starship-card';
 import axios from 'axios';
-import { imageContext } from '../imageContext';
+import { imageContext } from '../../imageContext';
 import style from './starship.module.css';
+
 function Starships() {
   const [starships, setStarShip] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -35,9 +36,7 @@ function Starships() {
   const handleClick = event => {
     setIsCliked(true);
     let target = event.target.getAttribute('name');
-    console.log(nextPage);
     if (target === 'next' && nextPage) {
-      console.log(from, max);
       setEndPoint(nextPage);
       setFrom(starships.length + 1);
       setOperation('next');
@@ -48,6 +47,7 @@ function Starships() {
       setFrom(starships.length - 1);
       setOperation('previous');
     }
+    console.log(endpoint);
   };
   useEffect(() => {
     if (endpoint) {

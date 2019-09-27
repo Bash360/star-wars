@@ -2,7 +2,7 @@
   height: 400px;
   width: 90%;
   margin-top: 20px;
-  border: 5px solid #9c9ea7;
+  box-shadow: -6px 6px #c2c3cb;
 }
 
 .card img {
