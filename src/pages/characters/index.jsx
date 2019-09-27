@@ -29,6 +29,7 @@ export default function Characters() {
     setPrevPage(previous);
     setLoading(false);
     setMax(count);
+    setIsCliked(false);
   };
   useEffect(() => {
     if (endPoint) getCharacters(endPoint);
@@ -36,6 +37,7 @@ export default function Characters() {
   }, [endPoint]);
   const handleClick = event => {
     setIsCliked(true);
+
     let target = event.target.getAttribute('name');
     if (target === 'next' && nextPage) {
       setEndPoint(nextPage);
@@ -56,6 +58,7 @@ export default function Characters() {
       return (
         <li key={url}>
           <CharacterCard
+            gender={gender}
             src={peopleImages[random].default}
             name={name}
             alternate="people"
@@ -74,6 +77,13 @@ export default function Characters() {
           <div className={style.people}>
             <ul>{characterCards}</ul>
           </div>
+          {isClicked && to < max && from > 1 ? (
+            <div className={`${style.spinner} ${style.spinner__pagination}`}>
+              <i className="fa fa-spinner fa-spin"></i>
+            </div>
+          ) : (
+            ''
+          )}
           <div className={style.paginated}>
             <div
               className={style.character__count}
