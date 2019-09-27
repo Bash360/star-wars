@@ -2,14 +2,15 @@ import React from 'react';
 import style from './people.module.css';
 import { NavLink } from 'react-router-dom';
 
-function PeopleCard({ src, alternate, name }) {
+function PeopleCard({ src, alternate, name, gender }) {
   return (
     <div className={style.people}>
       <img src={src} alt={alternate}></img>
 
       <div className={style.people__details}>
         <h5>{name}</h5>
-        <p>Rank</p>
+        <p className={style.rank}>Rank:</p>
+        <p className={style.gender}>Gender: {gender}</p>
         <p className={style.people__about}>
           Lorem ipsum dolor sit amet, consectetur adipiut tristique et egestas.
           Nunc lobortis mattis aliquam faucibus. Sagittis orci a scelerisque

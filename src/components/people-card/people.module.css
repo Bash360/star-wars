@@ -11,6 +11,10 @@
   width: 60%;
   height: 100%;
 }
+.gender,
+.rank {
+  font-weight: bold;
+}
 
 .people__details {
   width: 40%;
