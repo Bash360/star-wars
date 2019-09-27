@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import StarshipCard from '../../components/starship-card';
 import axios from 'axios';
-import { imageContext } from '../../imageContext';
+import imageContext from '../../imageContext';
 import style from './starship.module.css';
 import Head from '../../components/head';
 

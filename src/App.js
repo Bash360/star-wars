@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Home from './pages/home';
-import { imageContext } from './imageContext';
+import imageContext from './imageContext';
 import StarshipPage from './pages/starships';
-import _404 from '../src/404/404';
+import _404 from './pages/404';
+import Characters from './pages/characters';
 
 function App() {
   const [imageResource, setImageResource] = useState(null);
@@ -42,8 +43,8 @@ function App() {
           <imageContext.Provider value={{ imageResource }}>
             <Route path="/" strict exact component={Home} />
             <Route path="/starships" strict exact component={StarshipPage} />
+            <Route path="/characters" strict exact component={Characters} />
           </imageContext.Provider>
-          <Route exact component={_404} />
         </Switch>
       </React.Fragment>
     </div>
