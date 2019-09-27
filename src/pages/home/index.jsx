@@ -6,7 +6,7 @@ import GenericButton from '../../components/generic-button';
 import { NavLink } from 'react-router-dom';
 import PlanetCard from '../../components/planet-card';
 import PeopleCard from '../../components/people-card';
-import { imageContext } from '../../imageContext';
+import imageContext from '../../imageContext';
 import Head from '../../components/head';
 
 function Home() {
@@ -67,6 +67,7 @@ function Home() {
         peopleCards.push(
           <li key={people[index].url}>
             <PeopleCard
+              gender={people[index].gender}
               src={peopleImages[peopleCount].default}
               name={people[index].name}
               alternate="people"
@@ -101,7 +102,7 @@ function Home() {
           <div className={style.people}>
             <ul>{peopleCards}</ul>
           </div>
-          <NavLink className={style.home__link} to="/">
+          <NavLink className={style.home__link} to="/characters">
             <GenericButton text="View More" />
           </NavLink>
         </React.Fragment>
