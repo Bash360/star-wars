@@ -4,14 +4,16 @@ import axios from 'axios';
 import { imageContext } from '../imageContext';
 import style from './starship.module.css';
 function Starships() {
-  const [starships, setStarShip] = useState(null);
+  const [starships, setStarShip] = useState([]);
   const [loading, setLoading] = useState(true);
   const [endpoint, setEndPoint] = useState(null);
   let [nextPage, setNextPage] = useState(null);
   let [prevPage, setPrevPage] = useState(null);
   let [isClicked, setIsCliked] = useState(false);
-  let [count, setCount] = useState(1);
-  let [max, setMax] = useState(null);
+  let [from, setFrom] = useState(1);
+  let [to, setTo] = useState(0);
+  let [max, setMax] = useState(0);
+  let [operation, setOperation] = useState(null);
   const { starshipImages } = useContext(imageContext).imageResource;
   let starshipCards = [];
   const getStarShips = async (
@@ -25,21 +27,33 @@ function Starships() {
     setLoading(false);
     setIsCliked(false);
     setMax(count);
+    if (operation === 'next' && nextPage) setTo(prev => prev + results.length);
+    else if (operation === 'previous' && from > 1)
+      setTo(results.length - 1 - from);
+    else setTo(from + results.length - 1);
   };
   const handleClick = event => {
-    let target = event.target.getAttribute('name');
     setIsCliked(true);
-    if (target === 'next') {
+    let target = event.target.getAttribute('name');
+    console.log(nextPage);
+    if (target === 'next' && nextPage) {
+      console.log(from, max);
       setEndPoint(nextPage);
+      setFrom(starships.length + 1);
+      setOperation('next');
     }
-    if (target === 'previous') {
+
+    if (target === 'previous' && prevPage) {
       setEndPoint(prevPage);
+      setFrom(starships.length - 1);
+      setOperation('previous');
     }
   };
   useEffect(() => {
     if (endpoint) {
       getStarShips(endpoint);
-    } else {
+    }
+    if (starships.length === 0) {
       getStarShips();
     }
   }, [endpoint]);
@@ -69,15 +83,15 @@ function Starships() {
         <ul>{starshipCards}</ul>
       </div>
 
-      {isClicked && (
+      {isClicked && to < max && from > 1 ? (
         <div className={`${style.spinner} ${style.spinner__pagination}`}>
           <i className="fa fa-spinner fa-spin"></i>
         </div>
+      ) : (
+        ''
       )}
       <div className={style.paginated}>
-        <div
-          className={style.starship__count}
-        >{`${count}-${starships.length} of ${max}`}</div>
+        <div className={style.starship__count}>{`${from}-${to} of ${max}`}</div>
         <div className={style.pagination__button}>
           <div>
             <i
