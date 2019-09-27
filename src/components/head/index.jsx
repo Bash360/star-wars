@@ -1,10 +1,10 @@
 import React from 'react';
-import style from './home.module.css';
+import style from './head.module.css';
 import SearchButton from '../search-button';
 import InPutField from '../inputField';
 import logo from '../../assets/logo.png';
 import { NavLink } from 'react-router-dom';
-function Home() {
+function Head() {
   const handleSubmit = event => {
     event.preventDefault();
   };
@@ -30,4 +30,4 @@ function Home() {
     </section>
   );
 }
-export default Home;
+export default Head;

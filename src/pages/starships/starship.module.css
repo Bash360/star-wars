@@ -1,0 +1,90 @@
+.starships {
+  color: #000;
+}
+
+li {
+  list-style: none;
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-basis: 300px;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.paginated {
+  display: flex;
+  justify-center: center;
+}
+
+.pagination__button {
+  margin-top: 30px;
+  margin-bottom: 60px;
+  color: #000;
+  border: 3px solid #9c9ea7;
+  width: 200px;
+  height: 30%;
+  border-radius: 5px;
+}
+
+.pagination__button i {
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.starship__count {
+  color: #000;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  margin-right: 10px;
+  align-self: center;
+}
+
+.pagination__button i:hover {
+  opacity: 0.5;
+}
+
+.pagination__button .left {
+  margin-right: 5px;
+  border-right: 3px solid #9c9ea7;
+  padding-right: 10px;
+}
+
+.pagination__button .right {
+  margin-left: 5px;
+}
+
+.pagination__button div {
+  display: flex;
+  justify-content: center;
+}
+
+.starships__header + hr {
+  width: 100px;
+  height: 5px;
+  background: #000;
+  margin: auto;
+}
+
+.starships__header {
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  color: #000;
+}
+
+.spinner i {
+  margin-top: 20px;
+  color: #000;
+  font-size: 250%;
+}
+
+@media only screen and (min-width: 480px) {
+  .starships {
+    width: 85%;
+  }
+}

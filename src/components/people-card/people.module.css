@@ -1,0 +1,63 @@
+.people {
+  height: 250px;
+  width: 90%;
+  margin-top: 20px;
+  display: flex;
+  color: #000;
+}
+
+.people img {
+  display: inline-block;
+  width: 60%;
+  height: 100%;
+}
+.gender,
+.rank {
+  font-weight: bold;
+}
+
+.people__details {
+  width: 40%;
+  height: 100%;
+  background: #e3e4eb;
+  display: inline-block;
+}
+
+.people__details > p {
+  margin-left: 10px;
+}
+
+.people__details h5 {
+  width: 100%;
+  padding-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.people__about {
+  width: 90%;
+  height: 50%;
+  padding: 5px;
+  word-spacing: 3px;
+  word-wrap: break;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+a:link,
+a:visited {
+  color: #000;
+  text-align: center;
+  text-decoration: underline;
+  font-weight: bold;
+}
+a:hover {
+  opacity: 0.5;
+}
+
+@media only screen and (min-width: 480px) {
+  .people {
+    height: 400px;
+  }
+}

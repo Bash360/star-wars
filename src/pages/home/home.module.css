@@ -1,0 +1,80 @@
+.starships,
+.planets {
+  color: #000;
+}
+
+li {
+  list-style: none;
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-basis: 300px;
+}
+
+ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.people ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.people li {
+  list-style: none;
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-basis: 600px;
+}
+
+.starships__header + hr,
+.planets__header + hr,
+.people__header + hr {
+  width: 100px;
+  height: 5px;
+  background: #000;
+  margin: auto;
+}
+
+.starships__header,
+.planets__header,
+.people__header {
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  color: #000;
+}
+
+.home__link button {
+  margin-top: 10px;
+  width: 300px;
+  height: 40px;
+}
+
+.planets__header {
+  margin-top: 20px;
+}
+
+.spinner i {
+  margin-top: 20px;
+  color: #000;
+  font-size: 250%;
+}
+
+@media only screen and (min-width: 480px) {
+  .starships {
+    width: 85%;
+  }
+  .planets {
+    width: 75%;
+    margin-bottom: 20px;
+  }
+  .people {
+    width: 92%;
+    margin: auto;
+  }
+}
