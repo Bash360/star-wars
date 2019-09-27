@@ -3,6 +3,7 @@ import StarshipCard from '../../components/starship-card';
 import axios from 'axios';
 import { imageContext } from '../../imageContext';
 import style from './starship.module.css';
+import Head from '../../components/head';
 
 function Starships() {
   const [starships, setStarShip] = useState([]);
@@ -75,43 +76,49 @@ function Starships() {
     });
   }
 
-  return !loading ? (
+  return (
     <React.Fragment>
-      <h3 className={style.starships__header}>Popular Starships</h3>
-      <hr />
-      <div className={style.starships}>
-        <ul>{starshipCards}</ul>
-      </div>
-
-      {isClicked && to < max && from > 1 ? (
-        <div className={`${style.spinner} ${style.spinner__pagination}`}>
+      <Head />
+      {!loading ? (
+        <React.Fragment>
+          <h3 className={style.starships__header}>Popular Starships</h3>
+          <hr />
+          <div className={style.starships}>
+            <ul>{starshipCards}</ul>
+          </div>
+          {isClicked && to < max && from > 1 ? (
+            <div className={`${style.spinner} ${style.spinner__pagination}`}>
+              <i className="fa fa-spinner fa-spin"></i>
+            </div>
+          ) : (
+            ''
+          )}
+          <div className={style.paginated}>
+            <div
+              className={style.starship__count}
+            >{`${from}-${to} of ${max}`}</div>
+            <div className={style.pagination__button}>
+              <div>
+                <i
+                  name="previous"
+                  onClick={handleClick}
+                  className={`fa fa-angle-left ${style.left}`}
+                ></i>
+                <i
+                  name="next"
+                  onClick={handleClick}
+                  className={`fa fa-angle-right ${style.right}`}
+                ></i>
+              </div>
+            </div>
+          </div>
+        </React.Fragment>
+      ) : (
+        <div className={style.spinner}>
           <i className="fa fa-spinner fa-spin"></i>
         </div>
-      ) : (
-        ''
       )}
-      <div className={style.paginated}>
-        <div className={style.starship__count}>{`${from}-${to} of ${max}`}</div>
-        <div className={style.pagination__button}>
-          <div>
-            <i
-              name="previous"
-              onClick={handleClick}
-              className={`fa fa-angle-left ${style.left}`}
-            ></i>
-            <i
-              name="next"
-              onClick={handleClick}
-              className={`fa fa-angle-right ${style.right}`}
-            ></i>
-          </div>
-        </div>
-      </div>
     </React.Fragment>
-  ) : (
-    <div className={style.spinner}>
-      <i className="fa fa-spinner fa-spin"></i>
-    </div>
   );
 }
 

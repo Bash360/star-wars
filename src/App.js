@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import Head from './components/head/index';
 import { Switch, Route } from 'react-router-dom';
 import Home from './pages/home';
 import { imageContext } from './imageContext';
