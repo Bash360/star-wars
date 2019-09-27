@@ -1,2 +1,3 @@
 import { createContext } from 'react';
-export const imageContext = createContext(null);
+const imageContext = createContext(null);
+export default imageContext;
