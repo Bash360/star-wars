@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import style from './head.module.css';
 import SearchButton from '../search-button';
 import InPutField from '../inputField';
@@ -9,10 +9,14 @@ function Head() {
   const { search, setSearch } = useContext(searchContext);
   const handleSubmit = event => {
     event.preventDefault();
+    setSearch(prev =>
+      setSearch({ searchQuery: prev.searchQuery, searched: true }),
+    );
   };
   const handleChange = event => {
-    setSearch(event.target.value);
+    setSearch({ searchQuery: event.target.value, searched: false });
   };
+  console.log(search);
   return (
     <section className={style.home}>
       <NavLink title="home" to="/">
