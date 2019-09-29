@@ -106,6 +106,7 @@ function Home() {
                 let planetRandom = Math.floor(Math.random() * 2);
                 return (
                   <PlanetCard
+                    title="click"
                     key={planet.url}
                     src={planetImages[planetRandom].default}
                     name={planet.name}
