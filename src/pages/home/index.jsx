@@ -8,7 +8,7 @@ import PlanetCard from '../../components/planet-card';
 import PeopleCard from '../../components/people-card';
 import imageContext from '../../imageContext';
 import Head from '../../components/head';
-
+import text from '../../static-text';
 function Home() {
   const [starships, setStarships] = useState([]);
   const [planets, setPlanets] = useState([]);
@@ -67,10 +67,12 @@ function Home() {
         peopleCards.push(
           <li key={people[index].url}>
             <PeopleCard
+              birthYear={people[index].birth_year}
               gender={people[index].gender}
               src={peopleImages[peopleCount].default}
               name={people[index].name}
               alternate="people"
+              text={text}
             />
           </li>,
         );

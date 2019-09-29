@@ -5,7 +5,7 @@ import Head from '../../components/head';
 import style from './characters.module.css';
 import axios from 'axios';
 import searchContext from '../../searchContext';
-
+import text from '../../static-text';
 export default function Characters() {
   const { peopleImages } = useContext(imageContext).imageResource;
   const [characters, setCharacters] = useState([]);
@@ -17,7 +17,7 @@ export default function Characters() {
   const [max, setMax] = useState(0);
   const [from, setFrom] = useState(1);
   const [to, setTo] = useState(0);
-  const { search, setSearch } = useContext(searchContext);
+  const { search } = useContext(searchContext);
   let isFound = false;
 
   let characterCards = [];
@@ -65,6 +65,7 @@ export default function Characters() {
             src={peopleImages[random].default}
             name={name}
             alternate="people"
+            text={text}
           />
         </li>
       );
@@ -75,7 +76,7 @@ export default function Characters() {
     characterCards = characters.map(character => {
       if (searchRegex.test(character.name)) {
         let random = Math.floor(Math.random() * 3);
-        let { url, gender, name } = character;
+        let { url, gender, name, birth_year } = character;
         isFound = true;
         return (
           <li key={url}>
@@ -84,6 +85,8 @@ export default function Characters() {
               src={peopleImages[random].default}
               name={name}
               alternate="people"
+              text={text}
+              birthYear={birth_year}
             />
           </li>
         );
