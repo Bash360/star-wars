@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './pages/home';
 import imageContext from './imageContext';
 import StarshipPage from './pages/starships';
-import _404 from './pages/404';
+import Four0Four from './pages/404';
 import Characters from './pages/characters';
 import searchContext from './searchContext';
 import Character from './pages/character';
