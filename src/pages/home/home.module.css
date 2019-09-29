@@ -2,6 +2,12 @@
 .planets {
   color: #000;
 }
+.planets {
+  margin-bottom: 0;
+}
+.planets li {
+  width: 200px;
+}
 
 li {
   list-style: none;

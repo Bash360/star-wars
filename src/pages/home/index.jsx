@@ -8,6 +8,8 @@ import PlanetCard from '../../components/planet-card';
 import PeopleCard from '../../components/people-card';
 import imageContext from '../../imageContext';
 import Head from '../../components/head';
+import text from '../../static-text';
+import Carousel from '@brainhubeu/react-carousel';
 
 function Home() {
   const [starships, setStarships] = useState([]);
@@ -41,7 +43,6 @@ function Home() {
     for (let index = 0; index < 6; index++) {
       let { url, model, cargo_capacity, name } = starships[index];
       let random = Math.floor(Math.random() * 5);
-      let planetRandom = Math.floor(Math.random() * 2);
       starshipCards.push(
         <li key={url}>
           <StarshipCard
@@ -54,23 +55,17 @@ function Home() {
         </li>,
       );
 
-      planetCards.push(
-        <li key={planets[index].url}>
-          <PlanetCard
-            src={planetImages[planetRandom].default}
-            name={planets[index].name}
-            alternate="planet"
-          ></PlanetCard>
-        </li>,
-      );
+      planetCards.push();
       if (peopleCount <= 3) {
         peopleCards.push(
           <li key={people[index].url}>
             <PeopleCard
+              birthYear={people[index].birth_year}
               gender={people[index].gender}
               src={peopleImages[peopleCount].default}
               name={people[index].name}
               alternate="people"
+              text={text}
             />
           </li>,
         );
@@ -95,7 +90,27 @@ function Home() {
           <h3 className={style.planets__header}>Popular Planets</h3>
           <hr />
           <div className={style.planets}>
-            <ul>{planetCards}</ul>
+            <Carousel
+              clickToChange
+              centered
+              slidesPerPage={1}
+              itemWidth={400}
+              autoPlay={2000}
+              animationSpeed={1000}
+              infinite
+            >
+              {planets.map(planet => {
+                let planetRandom = Math.floor(Math.random() * 2);
+                return (
+                  <PlanetCard
+                    key={planet.url}
+                    src={planetImages[planetRandom].default}
+                    name={planet.name}
+                    alternate="planet"
+                  ></PlanetCard>
+                );
+              })}
+            </Carousel>
           </div>
           <h3 className={style.people__header}>Popular Characters</h3>
           <hr />

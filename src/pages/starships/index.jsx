@@ -4,6 +4,7 @@ import axios from 'axios';
 import imageContext from '../../imageContext';
 import style from './starship.module.css';
 import Head from '../../components/head';
+import searchContext from '../../searchContext';
 
 function Starships() {
   const [starships, setStarShip] = useState([]);
@@ -17,7 +18,9 @@ function Starships() {
   let [max, setMax] = useState(0);
   let [operation, setOperation] = useState(null);
   const { starshipImages } = useContext(imageContext).imageResource;
+  const { search } = useContext(searchContext);
   let starshipCards = [];
+  let isFound = false;
   const getStarShips = async (
     _endpoint = 'https://swapi.co/api/starships?page=1',
   ) => {
@@ -75,11 +78,37 @@ function Starships() {
       );
     });
   }
+  if (search.clickedSearch) {
+    let searchRegex = new RegExp(search.searchQuery, 'gi');
+    starshipCards = starships.map(starship => {
+      let { url, model, cargo_capacity, name } = starship;
+      let random = Math.floor(Math.random() * 5);
+      if (searchRegex.test(starship.name)) {
+        isFound = true;
+        return (
+          <li key={url}>
+            <StarshipCard
+              model={model}
+              capacity={cargo_capacity}
+              src={starshipImages[random].default}
+              alternate="starship"
+              name={name}
+            />
+          </li>
+        );
+      }
+    });
+  }
 
   return (
     <React.Fragment>
       <Head />
-      {!loading ? (
+      {!isFound && search.clickedSearch ? (
+        <p className={style.notfound}>Starship not found</p>
+      ) : (
+        ''
+      )}
+      {!loading || (search.clickedSearch && isFound) ? (
         <React.Fragment>
           <h3 className={style.starships__header}>Popular Starships</h3>
           <hr />

@@ -3,16 +3,27 @@ import GenericButton from '../generic-button';
 import PropTypes from 'prop-types';
 import style from './card.module.css';
 import { NavLink } from 'react-router-dom';
-function Card({ src, alternate, name, model, capacity }) {
+function Card(props) {
+  const { src, alternate, name, model, capacity } = props;
+
   return (
     <div className={style.card}>
       <img alt={alternate} src={src}></img>
       <h5>{name}</h5>
       <p>Model: {model}</p>
       <p>Capacity: {capacity}</p>
-      <GenericButton text="Read More" icon="fa fa-arrow-right">
-        <NavLink to={`/${name}`} />
-      </GenericButton>
+
+      <NavLink
+        to={{
+          pathname: `/starships/${name}`,
+          search: '',
+          hash: '',
+          state: { ...props },
+        }}
+      >
+        {' '}
+        <GenericButton text="Read More" icon="fa fa-arrow-right" />
+      </NavLink>
     </div>
   );
 }

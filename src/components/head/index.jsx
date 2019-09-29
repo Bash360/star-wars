@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import style from './head.module.css';
 import SearchButton from '../search-button';
 import InPutField from '../inputField';
 import logo from '../../assets/logo.png';
 import { NavLink } from 'react-router-dom';
+import searchContext from '../../searchContext';
 function Head() {
+  const { search, setSearch } = useContext(searchContext);
+
   const handleSubmit = event => {
     event.preventDefault();
+
+    setSearch({ ...search, clickedSearch: true });
   };
+  const handleChange = event => {
+    let value = event.target.value;
+    let sanitizedValue = value.replace(/[\\\/\n\t]/g, '');
+    setSearch({ ...search, searchQuery: sanitizedValue });
+  };
+
   return (
     <section className={style.home}>
       <NavLink title="home" to="/">
@@ -24,7 +35,12 @@ function Head() {
         </p>
         <div className={style.home__search}>
           <SearchButton label="search" />
-          <InPutField type="search" placeholder="Enter a search term" />
+          <InPutField
+            change={handleChange}
+            value={search}
+            type="search"
+            placeholder="Enter a search term"
+          />
         </div>
       </form>
     </section>
