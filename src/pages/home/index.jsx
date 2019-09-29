@@ -92,17 +92,21 @@ function Home() {
           <div className={style.planets}>
             <Carousel
               clickToChange
-              centered
-              slidesPerPage={1}
-              itemWidth={400}
+              centered={true}
+              slidesPerPage={3}
+              slidesPerScroll={3}
+              infinite
+              offset={20}
+              stopAutoPlayOnHover
+              itemWidth={500}
               autoPlay={2000}
               animationSpeed={1000}
-              infinite
             >
               {planets.map(planet => {
                 let planetRandom = Math.floor(Math.random() * 2);
                 return (
                   <PlanetCard
+                    title="click"
                     key={planet.url}
                     src={planetImages[planetRandom].default}
                     name={planet.name}

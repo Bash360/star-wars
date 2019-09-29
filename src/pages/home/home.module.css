@@ -2,11 +2,13 @@
 .planets {
   color: #000;
 }
+
 .planets {
   margin-bottom: 0;
+  width: 80%;
 }
+
 .planets li {
-  width: 200px;
 }
 
 li {
