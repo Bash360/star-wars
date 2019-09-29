@@ -101,10 +101,21 @@ export default function Characters() {
       ) : (
         ''
       )}
+
       {!loading || (search.clickedSearch && isFound) ? (
         <React.Fragment>
           <h3 className={style.people__header}>Popular Characters</h3>
           <hr />
+          <div className={style.select__parent}>
+            <label className={style.label}>
+              FILTER
+              <select className={style.select}>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="n/a">Robot</option>
+              </select>
+            </label>
+          </div>
           <div className={style.people}>
             <ul>{characterCards}</ul>
           </div>
