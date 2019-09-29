@@ -100,7 +100,7 @@ function Home() {
               stopAutoPlayOnHover
               itemWidth={500}
               autoPlay={2000}
-              animationSpeed={1000}
+              animationSpeed={1500}
             >
               {planets.map(planet => {
                 let planetRandom = Math.floor(Math.random() * 2);
