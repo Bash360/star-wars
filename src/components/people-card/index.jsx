@@ -3,7 +3,7 @@ import style from './people.module.css';
 import { NavLink } from 'react-router-dom';
 
 function PeopleCard(props) {
-  const { src, alternate, name, gender, text } = props;
+  const { src, alternate, name, gender, text, birthYear } = props;
   return (
     <div className={style.people}>
       <img src={src} alt={alternate}></img>
@@ -11,6 +11,7 @@ function PeopleCard(props) {
       <div className={style.people__details}>
         <h5>{name}</h5>
         <p className={style.rank}>Rank:</p>
+        <p className={style.rank}>Birth Year:{birthYear}</p>
         <p className={style.gender}>Gender: {gender}</p>
         <p className={style.people__about}>{text}</p>
         <NavLink
