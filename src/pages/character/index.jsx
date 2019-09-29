@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 function Character(props) {
   const { name } = props.match.params;
   const { src, gender, text } = props.location.state;
-  console.log(src);
   return (
     <React.Fragment>
       <div
