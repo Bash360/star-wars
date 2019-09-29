@@ -5,6 +5,7 @@ import imageContext from '../../imageContext';
 import style from './starship.module.css';
 import Head from '../../components/head';
 import searchContext from '../../searchContext';
+
 function Starships() {
   const [starships, setStarShip] = useState([]);
   const [loading, setLoading] = useState(true);
