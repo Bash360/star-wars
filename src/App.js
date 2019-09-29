@@ -7,11 +7,16 @@ import StarshipPage from './pages/starships';
 import _404 from './pages/404';
 import Characters from './pages/characters';
 import searchContext from './searchContext';
+import Character from './pages/character';
+import Starship from './pages/starship';
 
 function App() {
-  const [imageResource, setImageResource] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState({
+    searchQuery: '',
+    clickedSearch: false,
+  });
+  const [imageResource, setImageResource] = useState(null);
   const getImages = async () => {
     let starshipImages = await Promise.all([
       import('././assets/starship-1.jpg'),
@@ -48,6 +53,18 @@ function App() {
               <Route path="/" strict exact component={Home} />
               <Route path="/starships" strict exact component={StarshipPage} />
               <Route path="/characters" strict exact component={Characters} />
+              <Route
+                path="/starships/:name"
+                strict
+                exact
+                render={routerProps => <Starship {...routerProps} />}
+              />
+              <Route
+                path="/characters/:name"
+                strict
+                exact
+                render={routerProps => <Character {...routerProps} />}
+              />
             </imageContext.Provider>
           </searchContext.Provider>
         </Switch>
