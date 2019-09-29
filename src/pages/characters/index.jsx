@@ -4,6 +4,7 @@ import imageContext from '../../imageContext';
 import Head from '../../components/head';
 import style from './characters.module.css';
 import axios from 'axios';
+import searchContext from '../../searchContext';
 
 export default function Characters() {
   const { peopleImages } = useContext(imageContext).imageResource;
@@ -16,6 +17,8 @@ export default function Characters() {
   const [max, setMax] = useState(0);
   const [from, setFrom] = useState(1);
   const [to, setTo] = useState(0);
+  const { search, setSearch } = useContext(searchContext);
+  let isFound = false;
 
   let characterCards = [];
 
@@ -48,13 +51,13 @@ export default function Characters() {
       setEndPoint(prevPage);
       setFrom(characters.length - 1);
     }
-    console.log(endPoint);
   };
 
   if (!loading) {
     characterCards = characters.map(character => {
       let random = Math.floor(Math.random() * 3);
       let { url, gender, name } = character;
+
       return (
         <li key={url}>
           <CharacterCard
@@ -67,10 +70,35 @@ export default function Characters() {
       );
     });
   }
+  if (search.clickedSearch) {
+    let searchRegex = new RegExp(search.searchQuery, 'gi');
+    characterCards = characters.map(character => {
+      if (searchRegex.test(character.name)) {
+        let random = Math.floor(Math.random() * 3);
+        let { url, gender, name } = character;
+        isFound = true;
+        return (
+          <li key={url}>
+            <CharacterCard
+              gender={gender}
+              src={peopleImages[random].default}
+              name={name}
+              alternate="people"
+            />
+          </li>
+        );
+      }
+    });
+  }
   return (
     <React.Fragment>
       <Head />
-      {!loading ? (
+      {!isFound && search.clickedSearch ? (
+        <p className={style.notfound}>Character not found</p>
+      ) : (
+        ''
+      )}
+      {!loading || (search.clickedSearch && isFound) ? (
         <React.Fragment>
           <h3 className={style.people__header}>Popular Characters</h3>
           <hr />
@@ -84,6 +112,7 @@ export default function Characters() {
           ) : (
             ''
           )}
+
           <div className={style.paginated}>
             <div
               className={style.character__count}
