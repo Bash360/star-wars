@@ -17,6 +17,7 @@ export default function Characters() {
   const [max, setMax] = useState(0);
   const [from, setFrom] = useState(1);
   const [to, setTo] = useState(0);
+  const [value, setValue] = useState('');
   const { search } = useContext(searchContext);
   let isFound = false;
 
@@ -52,7 +53,10 @@ export default function Characters() {
       setFrom(characters.length - 1);
     }
   };
-
+  const selectItem = event => {
+    setValue(event.target.value);
+    console.log(event.target.value);
+  };
   if (!loading) {
     characterCards = characters.map(character => {
       let random = Math.floor(Math.random() * 3);
@@ -109,7 +113,11 @@ export default function Characters() {
           <div className={style.select__parent}>
             <label className={style.label}>
               FILTER
-              <select className={style.select}>
+              <select
+                value={value}
+                onChange={selectItem}
+                className={style.select}
+              >
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="n/a">Robot</option>

@@ -64,16 +64,17 @@
   cursor: pointer;
 }
 
+.select {
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 50px;
+  height: 30px;
+}
+
 .select__parent {
   display: flex;
   margin-right: auto;
   margin-left: 110px;
-}
-.select {
-  margin-top: 20px;
-  margin-left: 10px;
-  width: 200px;
-  height: 40px;
 }
 
 .label {
@@ -111,5 +112,11 @@
   .people {
     width: 92%;
     margin: auto;
+  }
+  .select {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 200px;
+    height: 40px;
   }
 }
