@@ -6,6 +6,7 @@ import style from './characters.module.css';
 import axios from 'axios';
 import searchContext from '../../searchContext';
 import text from '../../static-text';
+
 export default function Characters() {
   const { peopleImages } = useContext(imageContext).imageResource;
   const [characters, setCharacters] = useState([]);
@@ -18,6 +19,7 @@ export default function Characters() {
   const [from, setFrom] = useState(1);
   const [to, setTo] = useState(0);
   const [value, setValue] = useState('');
+  const [clickFilter, setClickFilter] = useState(false);
   const { search } = useContext(searchContext);
   let isFound = false;
 
@@ -54,8 +56,8 @@ export default function Characters() {
     }
   };
   const selectItem = event => {
+    setClickFilter(true);
     setValue(event.target.value);
-    console.log(event.target.value);
   };
   if (!loading) {
     characterCards = characters.map(character => {
@@ -79,6 +81,27 @@ export default function Characters() {
     let searchRegex = new RegExp(search.searchQuery, 'gi');
     characterCards = characters.map(character => {
       if (searchRegex.test(character.name)) {
+        let random = Math.floor(Math.random() * 3);
+        let { url, gender, name, birth_year } = character;
+        isFound = true;
+        return (
+          <li key={url}>
+            <CharacterCard
+              gender={gender}
+              src={peopleImages[random].default}
+              name={name}
+              alternate="people"
+              text={text}
+              birthYear={birth_year}
+            />
+          </li>
+        );
+      }
+    });
+  }
+  if (clickFilter) {
+    characterCards = characters.map(character => {
+      if (value === character.gender.toLowerCase()) {
         let random = Math.floor(Math.random() * 3);
         let { url, gender, name, birth_year } = character;
         isFound = true;
