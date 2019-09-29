@@ -23,7 +23,9 @@ function PeopleCard({ src, alternate, name, gender }) {
           quisque id. Nisl purus in mollis nunc sed id semper risus in. Purus
           semper eget duis at. Elit duis tristique{' '}
         </p>
-        <NavLink to={`/${name}`}>Read More</NavLink>
+        <NavLink to={`people/${name}`} params={(src, gender, name, alternate)}>
+          Read More
+        </NavLink>
       </div>
     </div>
   );
