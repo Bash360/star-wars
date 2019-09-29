@@ -7,16 +7,18 @@ import { NavLink } from 'react-router-dom';
 import searchContext from '../../searchContext';
 function Head() {
   const { search, setSearch } = useContext(searchContext);
+
   const handleSubmit = event => {
     event.preventDefault();
-    setSearch(prev =>
-      setSearch({ searchQuery: prev.searchQuery, searched: true }),
-    );
+
+    setSearch({ ...search, clickedSearch: true });
   };
   const handleChange = event => {
-    setSearch({ searchQuery: event.target.value, searched: false });
+    let value = event.target.value;
+    let sanitizedValue = value.replace(/[\\\/\n\t]/g, '');
+    setSearch({ ...search, searchQuery: sanitizedValue });
   };
-  console.log(search);
+
   return (
     <section className={style.home}>
       <NavLink title="home" to="/">
