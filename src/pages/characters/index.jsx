@@ -6,6 +6,7 @@ import style from './characters.module.css';
 import axios from 'axios';
 import searchContext from '../../searchContext';
 import text from '../../static-text';
+
 export default function Characters() {
   const { peopleImages } = useContext(imageContext).imageResource;
   const [characters, setCharacters] = useState([]);
@@ -17,6 +18,8 @@ export default function Characters() {
   const [max, setMax] = useState(0);
   const [from, setFrom] = useState(1);
   const [to, setTo] = useState(0);
+  const [value, setValue] = useState('');
+  const [clickFilter, setClickFilter] = useState(false);
   const { search } = useContext(searchContext);
   let isFound = false;
 
@@ -52,7 +55,10 @@ export default function Characters() {
       setFrom(characters.length - 1);
     }
   };
-
+  const selectItem = event => {
+    setClickFilter(true);
+    setValue(event.target.value);
+  };
   if (!loading) {
     characterCards = characters.map(character => {
       let random = Math.floor(Math.random() * 3);
@@ -93,6 +99,27 @@ export default function Characters() {
       }
     });
   }
+  if (clickFilter) {
+    characterCards = characters.map(character => {
+      if (value === character.gender.toLowerCase()) {
+        let random = Math.floor(Math.random() * 3);
+        let { url, gender, name, birth_year } = character;
+        isFound = true;
+        return (
+          <li key={url}>
+            <CharacterCard
+              gender={gender}
+              src={peopleImages[random].default}
+              name={name}
+              alternate="people"
+              text={text}
+              birthYear={birth_year}
+            />
+          </li>
+        );
+      }
+    });
+  }
   return (
     <React.Fragment>
       <Head />
@@ -101,10 +128,25 @@ export default function Characters() {
       ) : (
         ''
       )}
+
       {!loading || (search.clickedSearch && isFound) ? (
         <React.Fragment>
           <h3 className={style.people__header}>Popular Characters</h3>
           <hr />
+          <div className={style.select__parent}>
+            <label className={style.label}>
+              FILTER
+              <select
+                value={value}
+                onChange={selectItem}
+                className={style.select}
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="n/a">Robot</option>
+              </select>
+            </label>
+          </div>
           <div className={style.people}>
             <ul>{characterCards}</ul>
           </div>

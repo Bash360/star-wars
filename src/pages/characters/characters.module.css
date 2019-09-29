@@ -3,6 +3,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 }
+
 .notfound {
   color: #000;
   text-align: center;
@@ -10,6 +11,7 @@
   font-size: 40px;
   font-weight: bold;
 }
+
 .people li {
   list-style: none;
   display: inline;
@@ -62,6 +64,23 @@
   cursor: pointer;
 }
 
+.select {
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 50px;
+  height: 30px;
+}
+
+.select__parent {
+  display: flex;
+  margin-right: auto;
+  margin-left: 110px;
+}
+
+.label {
+  color: #000;
+}
+
 .character__count {
   color: #000;
   margin-top: 30px;
@@ -93,5 +112,11 @@
   .people {
     width: 92%;
     margin: auto;
+  }
+  .select {
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 200px;
+    height: 40px;
   }
 }
