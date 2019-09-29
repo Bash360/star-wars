@@ -83,6 +83,14 @@ ul {
   font-size: 250%;
 }
 
+.notfound {
+  color: #000;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 40px;
+  font-weight: bold;
+}
+
 @media only screen and (min-width: 480px) {
   .starships {
     width: 85%;
