@@ -80,23 +80,9 @@ function Starships() {
   }
   if (search.clickedSearch) {
     let searchRegex = new RegExp(search.searchQuery, 'gi');
-    starshipCards = starships.map(starship => {
-      let { url, model, cargo_capacity, name } = starship;
-      let random = Math.floor(Math.random() * 5);
-      if (searchRegex.test(starship.name)) {
-        isFound = true;
-        return (
-          <li key={url}>
-            <StarshipCard
-              model={model}
-              capacity={cargo_capacity}
-              src={starshipImages[random].default}
-              alternate="starship"
-              name={name}
-            />
-          </li>
-        );
-      }
+    starshipCards = starshipCards.filter(starship => {
+      isFound = true;
+      return searchRegex.test(starship.props.children.props.name);
     });
   }
 
