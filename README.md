@@ -1,6 +1,6 @@
 ## Simple React star-wars Application
 ## Created Using React js
-[https://sterling-star-wars.herokuapp.com](https://agitated-perlman-c6a9de.netlify.com/)
+[https://sterling-star-wars.herokuapp.com](https://sterling-star-wars.herokuapp.com)
 
 ## General requirements
 A single page application using either Vue (preferably) or React featuring:
