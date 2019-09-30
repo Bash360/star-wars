@@ -82,18 +82,15 @@ export default function Characters() {
   if (search.clickedSearch) {
     isFound = true;
     let searchRegex = new RegExp(search.searchQuery, 'gi');
-    characterCards = characterCards.map(characterCard => {
-      if (searchRegex.test(characterCard.props.children.props.name)) {
-        return characterCard;
-      }
-    });
+    characterCards = characterCards.filter(characterCard =>
+      searchRegex.test(characterCard.props.children.props.name),
+    );
   }
   if (clickFilter && !search.clickedSearch) {
-    characterCards = characterCards.map(characterCard => {
-      if (value === characterCard.props.children.props.gender.toLowerCase()) {
-        return characterCard;
-      }
-    });
+    characterCards = characterCards.filter(
+      characterCard =>
+        value === characterCard.props.children.props.gender.toLowerCase(),
+    );
   }
 
   return (
