@@ -19,9 +19,9 @@ export default function Characters() {
   const [from, setFrom] = useState(1);
   const [to, setTo] = useState(0);
   const [value, setValue] = useState('');
-  const [clickFilter, setClickFilter] = useState(false);
-  const { search } = useContext(searchContext);
+  const { search, setSearch } = useContext(searchContext);
   let isFound = false;
+  const [clickFilter, setClickFilter] = useState(false);
 
   let characterCards = [];
 
@@ -36,6 +36,7 @@ export default function Characters() {
     setLoading(false);
     setMax(count);
     setIsCliked(false);
+    setClickFilter(false);
   };
   useEffect(() => {
     if (endPoint) getCharacters(endPoint);
@@ -43,7 +44,6 @@ export default function Characters() {
   }, [endPoint]);
   const handleClick = event => {
     setIsCliked(true);
-
     let target = event.target.getAttribute('name');
     if (target === 'next' && nextPage) {
       setEndPoint(nextPage);
@@ -58,6 +58,7 @@ export default function Characters() {
   const selectItem = event => {
     setClickFilter(true);
     setValue(event.target.value);
+    setSearch({ ...search, clickedSearch: false });
   };
   if (!loading) {
     characterCards = characters.map(character => {
@@ -77,59 +78,28 @@ export default function Characters() {
       );
     });
   }
+
   if (search.clickedSearch) {
+    isFound = true;
     let searchRegex = new RegExp(search.searchQuery, 'gi');
-    characterCards = characters.map(character => {
-      if (searchRegex.test(character.name)) {
-        let random = Math.floor(Math.random() * 3);
-        let { url, gender, name, birth_year } = character;
-        isFound = true;
-        return (
-          <li key={url}>
-            <CharacterCard
-              gender={gender}
-              src={peopleImages[random].default}
-              name={name}
-              alternate="people"
-              text={text}
-              birthYear={birth_year}
-            />
-          </li>
-        );
+    characterCards = characterCards.map(characterCard => {
+      if (searchRegex.test(characterCard.props.children.props.name)) {
+        return characterCard;
       }
     });
   }
-  if (clickFilter) {
-    characterCards = characters.map(character => {
-      if (value === character.gender.toLowerCase()) {
-        let random = Math.floor(Math.random() * 3);
-        let { url, gender, name, birth_year } = character;
-        isFound = true;
-        return (
-          <li key={url}>
-            <CharacterCard
-              gender={gender}
-              src={peopleImages[random].default}
-              name={name}
-              alternate="people"
-              text={text}
-              birthYear={birth_year}
-            />
-          </li>
-        );
+  if (clickFilter && !search.clickedSearch) {
+    characterCards = characterCards.map(characterCard => {
+      if (value === characterCard.props.children.props.gender.toLowerCase()) {
+        return characterCard;
       }
     });
   }
+
   return (
     <React.Fragment>
       <Head />
-      {!isFound && search.clickedSearch ? (
-        <p className={style.notfound}>Character not found</p>
-      ) : (
-        ''
-      )}
-
-      {!loading || (search.clickedSearch && isFound) ? (
+      {!loading || (isFound && search.clickedSearch) ? (
         <React.Fragment>
           <h3 className={style.people__header}>Popular Characters</h3>
           <hr />
